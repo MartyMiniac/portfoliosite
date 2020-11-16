@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rohan Verma</title>
+</head>
+<style>
+    body{
+        padding: 0%;
+        border: none;
+        margin: 0%;
+    }
+    .wrapper{
+        position: relative;
+        width: 100vw;
+        height: 100vh;
+        background-image: url("/static/assets/images/background.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        filter: brightness(0.5);
+    }
+    .particle{
+        position: absolute;
+        border-radius: 50%;
+        width: 100px;
+        height: 100px;
+        left: 50vw;
+        top: 50vh;
+        z-index: 5;
+    }
+    .gifimage{
+        width: auto;
+        height: 100%;
+    }
+</style>
+<body>
+    <div class="particle" id="particleid">
+        <img class="gifimage" id="gifimageid" src="">
+    </div>
+    <div class="wrapper">
+
+    </div>
+</body>
+<script>
+    var mousex=0,mousey=0;
+    document.onmousemove=mouseeventhandle;
+    var stepchange=0;
+    var gifadd={
+        "waiting":"static/assets/gifs/waiting.gif",
+        "running_left":"static/assets/gifs/running-left.gif",
+        "running_right":"static/assets/gifs/running-right.gif"
+    };
+    function mouseeventhandle(event){
+        mousex=event.clientX;
+        mousey=event.clientY;
+    }
+    setInterval(function(){
+        p=document.getElementById("particleid");
+        y=p.offsetTop;
+        x=p.offsetLeft;
+        step=Math.sqrt(Math.pow(Math.abs(x-mousex),2)+Math.pow(Math.abs(y-mousey),2));
+        speedx=(mousex-x)/step;
+        speedy=(mousey-y)/step;
+        multiplier=3*(Math.log(step)/Math.log(50));
+        speedx*=multiplier;
+        speedy*=multiplier;
+        document.getElementById("particleid").style.top=y+speedy+"px";
+        document.getElementById("particleid").style.left=x+speedx+"px";
+        if(stepchange==step){
+            if(document.getElementById("gifimageid").getAttribute("src")!=gifadd.waiting)
+                document.getElementById("gifimageid").setAttribute("src",gifadd.waiting);
+        }
+        else{
+            stepchange=step;
+            if((mousex-x)<0 && document.getElementById("gifimageid").getAttribute("src")!=gifadd.running_left)
+                document.getElementById("gifimageid").setAttribute("src",gifadd.running_left);
+                
+            if((mousex-x)>0 &&document.getElementById("gifimageid").getAttribute("src")!=gifadd.running_right)
+                document.getElementById("gifimageid").setAttribute("src",gifadd.running_right);
+        }
+    },10);
+</script>
+</html>
