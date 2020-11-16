@@ -64,12 +64,20 @@
         padding: 0;
         border: none;
     }
+    .cornerbutton{
+        position: absolute;
+        z-index: 4;
+        width: 100px;
+        right: 20px;
+        top:50px;
+    }
 </style>
 <body>
     <div class="particle" id="particleid">
         <img class="gifimage" id="gifimageid" src="">
     </div>
     <div class="wrapper">
+        <button class="cornerbutton" id="cornerbuttonid" onclick=cornerpikachu()>Sit in the Corner😒</button>
         <div class="head">
             <h1 class="head-h1">Welcome to My World</h1>
         </div>
@@ -82,13 +90,24 @@
     var gifadd={
         "waiting":"static/assets/gifs/waiting.gif",
         "running_left":"static/assets/gifs/running-left.gif",
-        "running_right":"static/assets/gifs/running-right.gif"
+        "running_right":"static/assets/gifs/running-right.gif",
+        "corner":"static/assets/gifs/corner.gif"
     };
+    var movingpikachu=setInterval(movepikachu,10);
+    var pikachumoves=true;
+    var pikachuwaiting=false;
+
     function mouseeventhandle(event){
-        mousex=event.clientX;
-        mousey=event.clientY;
+        if(pikachumoves)
+        {
+            mousex=event.clientX;
+            mousey=event.clientY;
+        }
     }
-    setInterval(function(){
+    function startmovepikachu(){
+        movingpikachu=setInterval(movepikachu,10);
+    }
+    function movepikachu(){
         p=document.getElementById("particleid");
         y=p.offsetTop;
         x=p.offsetLeft;
@@ -102,7 +121,10 @@
         document.getElementById("particleid").style.left=x+speedx+"px";
         if(stepchange==step){
             if(document.getElementById("gifimageid").getAttribute("src")!=gifadd.waiting)
+            {
                 document.getElementById("gifimageid").setAttribute("src",gifadd.waiting);
+            }   
+            pikachuwaiting=true;
         }
         else{
             stepchange=step;
@@ -111,8 +133,9 @@
                 
             if((mousex-x)>0 &&document.getElementById("gifimageid").getAttribute("src")!=gifadd.running_right)
                 document.getElementById("gifimageid").setAttribute("src",gifadd.running_right);
+            pikachuwaiting=false;
         }
-    },10);
+    }
     $(document).ready(function(){
         $(".head").fadeOut(1);
         $(".wrapper").fadeOut(1);
@@ -123,5 +146,28 @@
     setTimeout(function(){
         $(".head").fadeIn(300);
     },500);
+    function cornerpikachu(){
+        if(pikachumoves)
+        {
+            mousex=10;
+            mousey=10;
+            pikachumoves=false;
+            t=setInterval(function(){
+                if(pikachuwaiting)
+                {
+                    clearInterval(movingpikachu);
+                    document.getElementById("gifimageid").setAttribute("src",gifadd.corner);
+                    clearInterval(t);
+                }
+            },100);
+            document.getElementById("cornerbuttonid").innerHTML="Come Follow me 😣";
+        }
+        else
+        {
+            startmovepikachu();
+            pikachumoves=true;
+            document.getElementById("cornerbuttonid").innerHTML="Sit in the Corner😒";
+        }
+    }
 </script>
 </html>
