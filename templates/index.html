@@ -3,22 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>Rohan Verma</title>
 </head>
 <style>
-    body{
+    html{
+        width: 100vw;
+        height: 100vh;
         padding: 0%;
         border: none;
         margin: 0%;
     }
-    .wrapper{
-        position: relative;
+    body{
+        padding: 0%;
+        border: none;
+        margin: 0%;
         width: 100vw;
-        height: 100vh;
+        background-color: black;
+    }
+    .wrapper{
+        position: absolute;
+        width: 100vw;
+        height: 100vh;        
+        padding: 0%;
+        border: none;
+        margin: 0%;
         background-image: url("/static/assets/images/background.jpg");
         background-repeat: no-repeat;
         background-size: cover;
-        filter: brightness(0.5);
     }
     .particle{
         position: absolute;
@@ -33,13 +45,34 @@
         width: auto;
         height: 100%;
     }
+    .head-h1{
+        text-align: center;
+        position: relative;
+        color: white;
+        margin: 0;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        font-size: 50px;
+        font-family: "Yanone Kaffeesatz", sans-serif;
+        border: none;
+    }
+    .head{
+        width: 100vw;
+        position: relative;
+        background-color: rgba(0,0,0,0.4);
+        margin: 0;
+        padding: 0;
+        border: none;
+    }
 </style>
 <body>
     <div class="particle" id="particleid">
         <img class="gifimage" id="gifimageid" src="">
     </div>
     <div class="wrapper">
-
+        <div class="head">
+            <h1 class="head-h1">Welcome to My World</h1>
+        </div>
     </div>
 </body>
 <script>
@@ -80,5 +113,15 @@
                 document.getElementById("gifimageid").setAttribute("src",gifadd.running_right);
         }
     },10);
+    $(document).ready(function(){
+        $(".head").fadeOut(1);
+        $(".wrapper").fadeOut(1);
+    });
+    setTimeout(function(){
+        $(".wrapper").fadeIn();
+    },200);
+    setTimeout(function(){
+        $(".head").fadeIn(300);
+    },500);
 </script>
 </html>
