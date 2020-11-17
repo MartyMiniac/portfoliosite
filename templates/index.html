@@ -8,29 +8,33 @@
 </head>
 <style>
     html{
-        width: 100vw;
-        height: 100vh;
-        padding: 0%;
-        border: none;
-        margin: 0%;
+        -moz-user-select: -moz-none;
+        -khtml-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
     }
     body{
         padding: 0%;
         border: none;
         margin: 0%;
-        width: 100vw;
+        height: 100vh;
         background-color: black;
+        background-image: url("/static/assets/images/background.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-attachment: fixed;
+        background-position: center;
+        min-width: 100vw;
     }
     .wrapper{
-        position: absolute;
+        position: relative;
         width: 100vw;
         height: 100vh;        
         padding: 0%;
         border: none;
         margin: 0%;
-        background-image: url("/static/assets/images/background.jpg");
-        background-repeat: no-repeat;
-        background-size: cover;
+        color: white;
     }
     .particle{
         position: absolute;
@@ -45,41 +49,196 @@
         width: auto;
         height: 100%;
     }
-    .head-h1{
-        text-align: center;
-        position: relative;
-        color: white;
-        margin: 0;
-        padding-top: 20px;
-        padding-bottom: 20px;
-        font-size: 50px;
-        font-family: "Yanone Kaffeesatz", sans-serif;
-        border: none;
-    }
     .head{
         width: 100vw;
-        position: relative;
+        position:fixed;
+        top: 0px;
+        left: 0px;
+        right: 0px;
         background-color: rgba(0,0,0,0.4);
         margin: 0;
-        padding: 0;
+        padding: 8px 16px;
         border: none;
+        color: white;
+        z-index: 3;
+    }
+    .headelement{
+        list-style: none;
+    }
+    .headelement a{
+        color: white;
+        text-decoration: none;
+    }
+    .headelement li{
+        display: inline;
+        margin: 20px 5px;
+        padding: 5px;
+        border-radius: 5px;
+        transition: 0.5s;
+    }
+    .headelement li:hover{
+        background-color: rgba(255,255,255,0.4);
+    }
+    .head-small{
+        display: none;
+        width: 100vw;
+        position:fixed;
+        top: 0px;
+        left: 0px;
+        right: 0px;
+        background-color: rgba(0,0,0,0.4);
+        margin: 0;
+        padding: 8px 16px;
+        border: none;
+        color: white;
+        z-index: 3;
+    }
+    .headelement-small a{
+        display: none;
+        padding: 8px 16px;
+        border-radius: 5px;
+        transition: 0.5s;        
+        color: white;
+        text-decoration: none;
+    }
+    .headelement-small{
+        margin: 16px;
+    }
+    .headelement-small a:hover{
+        background-color: rgba(255,255,255,0.4);
+    }
+    @media only screen and (max-width: 760px) {
+        .head-small{
+            background-image: linear-gradient(0deg,rgb(150, 150, 150) 10%, rgb(41, 41, 41) );
+            display: inline;
+        }
+        .headelement-small a{
+            display: inline;
+        }
+        .head{
+            display: none;
+        }
+        .headelement{
+            display: none;
+        }
     }
     .cornerbutton{
-        position: absolute;
+        position: fixed;
         z-index: 4;
         width: 100px;
         right: 20px;
         top:50px;
+        transition: 0.3s;
+    }
+    .cornerbutton:hover{
+        color: white;
+        background-color: black;
+    }
+    .cornerbutton-selected{
+        position: fixed;
+        z-index: 4;
+        width: 100px;
+        right: 20px;
+        top:50px;
+        transition: 0.3s;
+        color: white;
+        background-color: black;
+    }
+    .cornerbutton-selected:hover{
+        background-color: white;
+        color: black;
+    }
+    @media only screen and (max-width: 760px) {
+        .cornerbutton{
+            position: absolute;
+            z-index: 4;
+            width: 100px;
+            right: 20px;
+            top:70px;
+            transition: 0.3s;
+        }
+        .cornerbutton:hover{
+            color: white;
+            background-color: black;
+        }
+        .cornerbutton-selected{
+            position: absolute;
+            z-index: 4;
+            width: 100px;
+            right: 20px;
+            top:70px;
+            transition: 0.3s;
+            color: white;
+            background-color: black;
+        }
+        .cornerbutton-selected:hover{
+            background-color: white;
+            color: black;
+        }
+    }
+    .my-intro{
+        position: relative;
+        top: 150px;
+        margin: 0px;
+        margin-left: 20vw;
+        font-family: "calibri";
+    }
+    .my-intro h1{
+        font-size: 55px;
+        margin: 0px;
+        max-width: 50vh;
+    }
+    .my-intro p{
+        font-size: 25px;
+        margin: 0px;
+    }
+    @media only screen and (max-width: 500px) {
+        .my-intro h1{
+            font-size: 40px;
+        }
+        .my-intro p{
+            font-size: 20px;
+        }
     }
 </style>
 <body>
     <div class="particle" id="particleid">
         <img class="gifimage" id="gifimageid" src="">
     </div>
-    <div class="wrapper">
+    <nav class="head">
+        <ul class="headelement">
+            <li><a href="/">Rohan Verma</a></li>
+            <li><a href="#">My Works</a></li>
+            <li><a href="#">My Achivements</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+    <nav class="head-small">
+        <div class="headelement-small">
+            <a href="/" class="headelement">Rohan Verma</a>
+        </div>
+        <ul class="headelement">
+            <li><a href="/">Rohan Verma</a></li>
+            <li><a href="#">My Works</a></li>
+            <li><a href="#">My Achivements</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+    <div class="wrapper" id="wrapperid">
         <button class="cornerbutton" id="cornerbuttonid" onclick=cornerpikachu()>Sit in the Corner😒</button>
-        <div class="head">
-            <h1 class="head-h1">Welcome to My World</h1>
+        <div class="my-intro">
+            <h1>
+                Rohan<br>
+                Verma
+            </h1>
+            <p>
+                I am Self Learning College Student<br>
+                Currently Doing B.Tech in<br>
+                Computer Science Engineering from<br>
+                Siksha 'O' Anusandhan University, Bhubaneshwar.<br>
+                Currently I am Learning Networking,<br>
+                Distributed Computing, Cloud Computing<br>
+            </p>
         </div>
     </div>
 </body>
@@ -96,14 +255,18 @@
     var movingpikachu=setInterval(movepikachu,10);
     var pikachumoves=true;
     var pikachuwaiting=false;
+    var s=0;
 
     function mouseeventhandle(event){
         if(pikachumoves)
         {
-            mousex=event.clientX;
-            mousey=event.clientY;
+            mousex=event.clientX+5;
+            mousey=event.clientY+s+5;
         }
     }
+    $(window).on('scroll', function(){
+        s = $(window).scrollTop();
+    })
     function startmovepikachu(){
         movingpikachu=setInterval(movepikachu,10);
     }
@@ -149,8 +312,8 @@
     function cornerpikachu(){
         if(pikachumoves)
         {
-            mousex=10;
-            mousey=10;
+            mousex=0;
+            mousey=50;
             pikachumoves=false;
             t=setInterval(function(){
                 if(pikachuwaiting)
@@ -161,12 +324,14 @@
                 }
             },100);
             document.getElementById("cornerbuttonid").innerHTML="Come Follow me 😣";
+            document.getElementById("cornerbuttonid").setAttribute("class","cornerbutton-selected");
         }
         else
         {
             startmovepikachu();
             pikachumoves=true;
             document.getElementById("cornerbuttonid").innerHTML="Sit in the Corner😒";
+            document.getElementById("cornerbuttonid").setAttribute("class","cornerbutton");
         }
     }
 </script>
