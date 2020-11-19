@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="http://malsup.github.com/jquery.form.js"></script> 
     <link rel="shortcut icon" href="/static/favicon.ico">
     <title>Rohan Verma</title>
 </head>
@@ -222,9 +223,8 @@
         margin: 0px;
         max-width: 50vh;
     }
-    .my-intro p{
-        font-size: 25px;
-        margin: 0px;
+    .my-intro textarea{
+        margin-top: 1px;
     }
     @media only screen and (max-width: 500px) {
         .my-intro h1{
@@ -281,9 +281,9 @@
     <nav class="head">
         <ul class="headelement">
             <li><a href="/">Rohan Verma</a></li>
-            <li><a href="#wrapperpane1id">My Works</a></li>
+            <li><a href="/#wrapperpane1id">My Works</a></li>
             <li><a href="#">My Achivements</a></li>
-            <li><a href="/contact">Contact</a></li>
+            <li><a href="#">Contact</a></li>
         </ul>
     </nav>
     <nav class="head-small">
@@ -292,87 +292,28 @@
             <p class="headelement menubtn" onclick=showlist()>Menu</p>
         </div>
         <ul class="headelementlist" id="headelementlistid">
-            <li><a href="#wrapperpane1id" onclick=showlist()>My Works</a></li>
+            <li><a href="/#wrapperpane1id" onclick=showlist()>My Works</a></li>
             <li><a href="#" onclick=showlist()>My Achivements</a></li>
-            <li><a href="/contact" onclick=showlist()>Contact</a></li>
+            <li><a href="#" onclick=showlist()>Contact</a></li>
         </ul>
     </nav>
     <div class="wrapper" id="wrapperid">
         <button class="cornerbutton" id="cornerbuttonid" onclick=cornerpikachu()>Sit in the Corner😒</button>
         <div class="my-intro">
             <h1>
-                ROHAN<br>
-                VERMA
+                CONTACT<br>
+                Me
             </h1>
-            <p>
-                I am Self Learning College Student<br>
-                Currently Doing B.Tech in<br>
-                Computer Science Engineering from<br>
-                Siksha 'O' Anusandhan University, Bhubaneshwar.<br>
-                Currently I am Learning Networking,<br>
-                Distributed Computing, Cloud Computing<br>
-            </p>
-            <div class="linklist">
-                <p>My Socials : </p>
-                <a href="https://github.com/MartyMiniac" target="#"><img src="/static/assets/icons/git.png"></a>
-                <a href="https://instagram.com/martyminiac" target="#"><img src="/static/assets/icons/ig.png"></a>
-                <a href="https://t.me/martyminiac" target="#"><img src="/static/assets/icons/tele.png"></a>
-                <a href="mailto://personal@rohanverma.me" target="#"><img src="/static/assets/icons/mail.png"></a>
-            </div>
+            <form name="contact" id="contactform">
+                <p id="errormsg"></p>
+                <input type="text" name="name" id="contactname"size="50" placeholder="Name"><br>
+                <input type="email" name="email" id="contactemail" size="50" placeholder="Email"><br>
+                <textarea cols=50 name="msg" rows=5 id="contactmsg" placeholder="Message"></textarea><br>
+                <button id="formsubmit">Submit</button>
+            </form>
+            
         </div>
         <div class="wrapperpane1" id="wrapperpane1id">
-            <div class="wrapperpane1text">
-                <h1>
-                    My Works
-                </h1>
-                <p>
-                    I was never the best at school or academics but was a super curious guy.
-                    Learning Stuffs by mugging up was never my attitude.
-                    I always wanted to learn the things by try it out.
-                    Experimenting, learning things by doing and a lot of times ignoring warnings
-                    just to see what might be the result had always facinated me and had always been my notion.
-                    The thing about trying always had inspired and drawn me into doing all kind of weird stuffs
-                    but it taught me not only what not to do but also why it should not be done.
-                    <table>
-                        <tr>
-                            <th>C++</th>
-                            <th>JAVA</th>
-                            <th>Python</th>
-                            <th>C#</th>
-                        </tr>
-                        <tr>
-                            <td>Complirun</td>
-                            <td>Random Graphic Pattern</td>
-                            <td>Online Class Website</td>
-                            <td>Word List</td>
-                        </tr>
-                        <tr>
-                            <td>Dcompi</td>
-                            <td>ExeCute</td>
-                            <td>Proxyfy</td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td>StopWatch</td>
-                            <td>Shorts</td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td>Group TCP Messenger</td>
-                            <td>Autorun</td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td>ITER Assignment</td>
-                            <td>Farewell Bot</td>
-                            <td></td>
-                        </tr>
-                    </table>
-                </p>
-            </div>
         </div>
     </div>
 </body>
@@ -479,6 +420,62 @@
             document.getElementById("headelementlistid").style.display="none";
         }
     }
+</script>
+<script>
+    //Contact me page js
+    $("#formsubmit").click(function(event){
+        event.preventDefault();
+        arr=[];
+        if(document.forms["contact"]["contactname"].value=="")
+        {
+            document.getElementById("contactname").style.borderColor="rgb(255, 72, 4)";
+            arr.push("Name");
+        }
+        else
+        {
+            document.getElementById("contactname").style.borderColor="rgb(118, 118, 118)";
+        }
 
+        if(document.forms["contact"]["contactemail"].value=="")
+        {
+            document.getElementById("contactemail").style.borderColor="rgb(255, 72, 4)";
+            arr.push("Email");
+        }
+        else
+        {
+            document.getElementById("contactemail").style.borderColor="rgb(118, 118, 118)";
+        }
+        if(document.forms["contact"]["contactmsg"].value=="")
+        {
+            document.getElementById("contactmsg").style.borderColor="rgb(255, 72, 4)";
+            arr.push("Message");
+        }
+        else
+        {
+            document.getElementById("contactmsg").style.borderColor="rgb(118, 118, 118)";
+        }
+        st="";
+        for(i=0; i<arr.length; i++)
+        {
+            st+=arr[i];
+            if((i+1)<arr.length)
+                st+=", ";
+        }
+        st="Error : "+st+" is missing";
+        if(arr.length!=0)
+            document.getElementById("errormsg").innerHTML=st;
+        else
+        {
+            document.getElementById("errormsg").innerHTML="You will be contacted soon";
+            let response = fetch('/contactpost', {
+                method: 'POST',
+                body: new FormData(contactform)
+            });
+            setTimeout(function(){
+                window.location.replace("/");
+            },5000);
+            
+        }
+    });
 </script>
 </html>
